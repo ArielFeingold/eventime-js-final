@@ -1,0 +1,28 @@
+
+<%= form_for @user do |f| %>
+
+<div class="form-group">
+<%= f.label "Email" %>
+<br>
+<%= f.email_field :email, class: "form-control", :placeholder => (@user.errors.full_messages_for(:email).first) %>
+</div>
+
+<div class="form-group">
+  <%= f.label :password, "Choose Password" %>
+  <br>
+  <%= f.password_field :password, class: "form-control" , :placeholder => (@user.errors.full_messages_for(:password).first) %>
+</div>
+
+  <div class="form-group">
+    <%= f.label "Confirm Password" %>
+    <br>
+    <%= f.password_field :password_confirmation, class: "form-control", :placeholder => (@user.errors.full_messages_for(:password_confirmation).first)%>
+  </div>
+
+  <div class="actions">
+    <br/>
+    <%= f.submit "Open Account", class: "btn btn-primary" %>
+  </div>
+
+
+<% end %>
