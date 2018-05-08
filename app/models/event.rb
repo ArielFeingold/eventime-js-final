@@ -6,4 +6,5 @@ class Event < ApplicationRecord
   has_many :comments
 
   accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :rsvps
 end

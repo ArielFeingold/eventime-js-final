@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   resources :events
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :sessions, only: [:new, :create, :destroy]
+
+  root 'static_pages#home'
+
+  get '/auth/facebook/callback' => 'sessions#create'
+  controller :sessions do
+    get  'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
 end

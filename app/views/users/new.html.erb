@@ -1,2 +1,13 @@
-<h1>Sign Up to Eventime</h1>
-<%= render 'form' %>
+<div class="row">
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3 text-center">Start The Party Today</h5>
+        <%= link_to('Log in with Facebook!', '/auth/facebook', class:"btn btn-primary btn-block mb-4")%>
+
+        <p class="text-center">or</p>
+        <h5 class="card-title pb-3 text-center">Sign-up To EventHub</h5>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>

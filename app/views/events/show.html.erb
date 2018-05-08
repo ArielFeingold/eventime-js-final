@@ -1,2 +1,16 @@
-<h1>New#show</h1>
-<p>Find me in app/views/new/show.html.erb</p>
+
+<h1><%=@event.title%></h1>
+
+<p><%=@event.description%></p>
+
+<h5>RSVP:</h5>
+<ul>
+  <%@event.rsvps.each do |rsvp| %>
+    <li><%=link_to rsvp.user.name, user_path(rsvp.user)%></li>
+  <%end%>
+</ul>
+
+<%= form_for :rsvp do |f| %>
+  <%= f.hidden_field :user_id, value: session.user_id %>
+  <%= f.submit "RSVP", class: "btn btn-default" %>
+<% end %>
