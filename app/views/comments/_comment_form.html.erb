@@ -1,0 +1,13 @@
+<%= form_for @comment do |f| %>
+
+  <div class="form-group">
+    <%= f.text_area :content, class: "form-control"%>
+  </div>
+
+  <div class="actions">
+    <br/>
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+  </div>
+
+
+<% end %>
