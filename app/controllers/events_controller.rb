@@ -25,8 +25,13 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    # binding.pry
   end
+
+private
+
+  # def rsvp?
+  #   self
+  # end
 
   def event_params
   params.require(:event).permit(
