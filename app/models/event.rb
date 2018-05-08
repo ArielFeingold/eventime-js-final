@@ -7,4 +7,6 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :rsvps
+
+  validates :title, :description, :date, :time, presence: true
 end
