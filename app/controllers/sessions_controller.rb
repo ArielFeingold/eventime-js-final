@@ -25,20 +25,26 @@ private
   end
 
   def sign_in_with_auth(auth)
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-      u.password = 'asdfgasgadfgsdfhscnbq345'
+    if User.find_by(uid: auth['uid']).present?
+      @user = User.find_by(uid: auth['uid'])
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      @user = User.create(uid: auth['uid']) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+        u.password = 'asdfgasgadfgsdfhscnbq345'
+      end
+      session[:user_id] = @user.id
+      redirect_to edit_user_path(@user)
     end
-    session[:user_id] = @user.id
-    redirect_to edit_user_path(@user)
   end
 
   def sign_in_with_password
     @user = User.find_by(email: params[:user][:email])
     if @user
       session[:user_id] = @user.id
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(@user)
     else
       render 'new'
     end
