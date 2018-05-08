@@ -1,16 +1,21 @@
 
-<h1><%=@event.title%></h1>
+<div class="row">
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3 text-center"><%=@event.title%></h5>
+          <p><%=@event.description%></p>
+          <p><%=@event.date%></p>
+          <p><%=@event.time%></p>
 
-<p><%=@event.description%></p>
-
-<h5>RSVP:</h5>
-<ul>
-  <%@event.rsvps.each do |rsvp| %>
-    <li><%=link_to rsvp.user.name, user_path(rsvp.user)%></li>
-  <%end%>
-</ul>
-
-<%= form_for :rsvp do |f| %>
-  <%= f.hidden_field :user_id, value: session.user_id %>
-  <%= f.submit "RSVP", class: "btn btn-default" %>
-<% end %>
+          <h5>Attending:</h5>
+          <ul>
+            <%@event.rsvps.each do |rsvp| %>
+              <li><%=link_to rsvp.user.name, user_path(rsvp.user)%></li>
+            <%end%>
+          </ul>
+          <%= button_to "Attend Event", rsvps_path, :method => :post, params: { "event_id" => @event.id }, class: "btn btn-outline-warning btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

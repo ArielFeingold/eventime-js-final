@@ -1,4 +1,4 @@
-class EventsController < ApplicationController 
+class EventsController < ApplicationController
 
   def new
     @event = Event.new
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @rsvp = @event.rsvps.find_or_initialize_by user: current_user if current_user
+    # binding.pry
   end
 
   def event_params
@@ -41,8 +41,6 @@ class EventsController < ApplicationController
       :city,
       :state,
     ],
-    rsvp_attributes: [:user_id]
-  )
-end
-
+    rsvp_attributes: [:user_id])
+  end
 end
