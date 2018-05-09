@@ -7,14 +7,24 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-    redirect_to event_path(@event)
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render 'new'
+    end
   end
 
   def edit
+    @event = Event.find_by(id: params[:id])
   end
 
   def update
+    @event = Event.find_by(id: params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render 'new'
+    end
   end
 
   def destroy
