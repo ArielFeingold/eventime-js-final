@@ -1,2 +1,29 @@
-<h1>New#index</h1>
-<p>Find me in app/views/new/index.html.erb</p>
+<div class="row">
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3 text-center">Upcoming Events</h5>
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Name</th>
+              <th scope="col">Location</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          <%@this_week_events.each do |event|%>
+            <tr>
+             <th scope="row">1</th>
+             <td><%=link_to event.title, event_path(event)%></td>
+             <td><%=event.location.city%>, <%=event.location.state%></td>
+             <td><%=event.date%></td>
+           </tr>
+         <%end%>
+       </tbody>
+      </table>
+      <%= link_to '<button type="button" class="btn btn-primary btn-lg btn-block">Create New Event</button>'.html_safe, new_event_path %>
+      </div>
+    </div>
+  </div>

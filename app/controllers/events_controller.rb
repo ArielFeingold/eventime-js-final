@@ -34,7 +34,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    binding.pry
     date_range  = Date.today..(Date.today+7)
     @this_week_events = Event.where(date: date_range)
   end
