@@ -4,6 +4,9 @@
     <%= f.text_area :content, class: "form-control"%>
   </div>
 
+  <%= f.hidden_field :event_id, value: @event.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="actions">
     <br/>
       <%= f.submit "Add Comment", class: "btn btn-primary" %>

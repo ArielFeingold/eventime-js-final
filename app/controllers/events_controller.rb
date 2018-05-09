@@ -30,9 +30,6 @@ class EventsController < ApplicationController
 
 private
 
-  # def rsvp?
-  #   self
-  # end
 
   def event_params
   params.require(:event).permit(
