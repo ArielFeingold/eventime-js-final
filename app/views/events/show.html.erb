@@ -7,22 +7,11 @@
           <p>Description: <%=@event.description%></p>
           <p>Date: <%=@event.date%></p>
           <p>Time: <%=@event.time%></p>
+          <%if @event.user == current_user%>
+            <%= link_to "Edit Event", edit_event_path(@event), class:"btn btn-primary" %>
+          <%end%>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title pb-3">Comments </h5>
-          <ul class="list-group">
-            <%@event.comments.each do |c| %>
-              <li class="list-group-item"> <span class="font-weight-bold"><%=c.user.name%></span>: <%=c.content%></li>
-            <%end%>
-          </ul>
-          <p>Leave a Comment</p>
-          <%= render 'comments/comment_form' %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 mx-auto pt-5">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">Going: </h5>
@@ -37,6 +26,20 @@
             <p>you are attending this event</p>
             <%= button_to "Unattend Event", rsvp_path, :method => :delete, class: "btn btn-outline-warning btn-sm" %>
           <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3">Comments </h5>
+          <ul class="list-group">
+            <%@event.comments.each do |c| %>
+              <li class="list-group-item"> <span class="font-weight-bold"><%=c.user.name%></span>: <%=c.content%></li>
+            <%end%>
+          </ul>
+          <p>Leave a Comment</p>
+          <%= render 'comments/comment_form' %>
       </div>
     </div>
   </div>
