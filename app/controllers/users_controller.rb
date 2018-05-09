@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: session[:user_id])
+    @user = current_user
   end
 
   def update
@@ -25,6 +25,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:id]) || current_user
+    @attending = attending(@user)
+    binding.pry
   end
 
   def destroy
@@ -40,4 +43,8 @@ class UsersController < ApplicationController
       :about,
       )
     end
+
+  def attending(user)
+    Event.all.find_all {|e| e.users.include? user}
+  end
 end
