@@ -14,7 +14,7 @@
         <h5 class="card-title pb-3">Comments </h5>
           <ul class="list-group">
             <%@event.comments.each do |c| %>
-              <li class="list-group-item"><%=c.content%></li>
+              <li class="list-group-item"> <span class="font-weight-bold"><%=c.user.name%></span>: <%=c.content%></li>
             <%end%>
           </ul>
           <p>Leave a Comment</p>
