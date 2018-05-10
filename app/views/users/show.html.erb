@@ -36,11 +36,15 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">RSVP'd Events</h5>
-        <ul class="list-group">
-          <%@attending.each do |event| %>
-            <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
-          <%end%>
-        </ul>
+        <%if @user_events.empty?%>
+          <p>You have no RSVP'd events. Click <%=link_to "HERE", events_path%> to see all upcoming events</p>
+        <%else%>
+          <ul class="list-group">
+            <%@attending.each do |event| %>
+              <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
+            <%end%>
+          </ul>
+        <%end%>
       </div>
     </div>
   </div>
@@ -48,11 +52,15 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title pb-3">Events Near You</h5>
-          <ul class="list-group">
-            <%@events_near_by.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
-            <%end%>
-          </ul>
+          <%if @events_near_by.empty?%>
+            <p>No Events near by. Click <%=link_to "HERE", events_path%> to see all the events.</p>
+          <%else%>
+            <ul class="list-group">
+              <%@events_near_by.each do |event| %>
+                <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
+              <%end%>
+            </ul>
+          <%end%>
         </div>
       </div>
     </div>
