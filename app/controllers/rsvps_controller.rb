@@ -13,7 +13,6 @@ class RsvpsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     rsvp = Rsvp.find_by(user_id: current_user, event_id: params[:id])
     rsvp.destroy
-    binding.pry
     redirect_to event_path(@event)
   end
 

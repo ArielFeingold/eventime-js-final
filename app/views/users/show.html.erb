@@ -6,6 +6,9 @@
         <p class=""><b> A Bit About Me:</b><br>
           <%=@user.about.capitalize%></p>
         <p><b>Home Town:</b> <%=@user.city%>, <%=@user.state%></p>
+        <%if @user == current_user%>
+          <%= link_to '<button type="button" class="btn btn-primary mt-2">Edit Profile</button>'.html_safe, edit_user_path(@user) %>
+        <%end%>
       </div>
     </div>
   </div>

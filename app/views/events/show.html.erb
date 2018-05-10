@@ -21,7 +21,7 @@
               <li class="list-group-item"><%=link_to rsvp.user.name, user_path(rsvp.user)%></li>
             <%end%>
           </ul>
-          <%if @event.rsvps.detect {|r| r.user_id = current_user.id} == nil%>
+          <%if @event.rsvps.detect {|r| r.user_id == current_user.id} == nil%>
             <%= button_to "Attend Event", rsvps_path, :method => :post, params: { "event_id" => @event.id }, class: "btn btn-outline-warning btn-sm" %>
           <%else%>
             <p>you are attending this event</p>
