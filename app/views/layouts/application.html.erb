@@ -24,7 +24,7 @@
             <a class="navbar-brand ml-3" href="<%= login_path %>"/>Log In</a>
           <%end%>
           <%if current_user%>
-          <a class="navbar-brand ml-3" href="<%= user_path(current_user) %>"/><%=current_user.name%>'s Profile</a>
+          <a class="navbar-brand ml-3" href="<%= user_path(current_user) %>"/><%=current_user.name.titleize%>'s Profile</a>
           <a class="navbar-brand ml-3" href="<%= events_path %>"/>Events</a>
             <%= button_to 'Logout', logout_path, :method => :delete, class: "btn btn-outline-warning btn-sm"%>
           <%end%>

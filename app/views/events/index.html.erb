@@ -15,15 +15,15 @@
           <tbody>
           <%@events.each do |event|%>
             <tr>
-             <th scope="row">1</th>
-             <td><%=link_to event.title, event_path(event)%></td>
-             <td><%=event.location.city%>, <%=event.location.state%></td>
+             <th scope="row"></th>
+             <td><%=link_to event.title.titleize, event_path(event)%></td>
+             <td><%=event.location.city.titleize%>, <%=event.location.state.titleize%></td>
              <td><%=event.date%></td>
            </tr>
          <%end%>
        </tbody>
       </table>
-      <%= link_to '<button type="button" class="btn btn-primary btn-lg btn-block">Create New Event</button>'.html_safe, new_event_path %>
+      <%= link_to '<button type="button" class="col-sm-8 mx-auto btn btn-primary btn-lg btn-block">Create New Event</button>'.html_safe, new_event_path %>
       </div>
     </div>
   </div>

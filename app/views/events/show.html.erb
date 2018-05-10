@@ -36,7 +36,7 @@
         <h5 class="card-title pb-3">Comments </h5>
           <ul class="list-group">
             <%@event.comments.each do |c| %>
-              <li class="list-group-item"> <%=link_to c.user.name, user_path(c.user)%>: <%=c.content%></li>
+              <li class="list-group-item"> <%=link_to c.user.name.titleize, user_path(c.user)%>: <%=c.content.capitalize%></li>
             <%end%>
           </ul>
           <p class="mt-4">Leave a Comment:</p>
