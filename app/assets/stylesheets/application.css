@@ -34,10 +34,6 @@ body, html  {
     background-size: cover;
 }
 
-div.field_with_errors input{
-  border: 1px solid red;
-}
-
-div.field_with_errors textarea{
+div.field_with_errors input, textarea, select{
   border: 1px solid red;
 }

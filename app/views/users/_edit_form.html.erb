@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label "State of Residence" %>
     <br>
-    <%= f.text_field :state, class: "form-control", :placeholder => (@user.errors.full_messages_for(:state).first) || @user.city%>
+    <%= f.select :state, us_states, :prompt => 'Select One' %>
   </div>
 
 
