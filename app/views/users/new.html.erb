@@ -9,20 +9,20 @@
         <h5 class="card-title pb-3 text-center">Sign-up To EventHub</h5>
         <% if @user.errors.any? %>
           <div id="error_explanation">
-            <table class="table table-borderless table-sm">
+            <table class="table table-borderless">
               <thead>
-                <tr>
-                  <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this account from being opened:</th>
+                <tr class="table-danger">
+                  <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this event from being created:</th>
                 </tr>
               </thead>
-                <tbody>
-                  <tr><% @user.errors.full_messages.each do |msg| %>
-                        <td scope="row" class="table-warning"> &nbsp &nbsp <%= msg %></td>
-                      <% end %>
-                  </tr>
-                </tbody>
-              </table>
-          <% end %>
+              <tbody>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <tr class="table-warning"><td>&nbsp &nbsp <%= msg %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
         <%= render 'form' %>
       </div>
     </div>
