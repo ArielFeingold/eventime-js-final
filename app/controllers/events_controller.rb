@@ -35,7 +35,7 @@ class EventsController < ApplicationController
 
   def index
     date_range  = Date.today..(Date.today+7)
-    @this_week_events = Event.where(date: date_range)
+    @events = Event.all.sort_by {|event| event.date}
   end
 
   def show

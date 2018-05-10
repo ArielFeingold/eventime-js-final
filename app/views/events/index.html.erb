@@ -13,7 +13,7 @@
             </tr>
           </thead>
           <tbody>
-          <%@this_week_events.each do |event|%>
+          <%@events.each do |event|%>
             <tr>
              <th scope="row">1</th>
              <td><%=link_to event.title, event_path(event)%></td>
