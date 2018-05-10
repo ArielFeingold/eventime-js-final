@@ -55,11 +55,10 @@ class UsersController < ApplicationController
   end
 
   def user_events
-    Event.all.find_all {|event| event.user_id == params[:id]}
+    Event.all.find_all {|event| event.user_id == params[:id].to_i}
   end
 
   def events_near_by
-
     Event.all.find_all {|event| event.location.city.downcase == current_user.city.downcase && event.location.state == current_user.state}
   end
 end
