@@ -43,7 +43,7 @@
 
     <%= f.label :state %>
     <br>
-    <%= f.text_field :state %><br>
+    <%= f.select :state, us_states, :prompt => 'Select One' %>
 
   <% end %>
 
