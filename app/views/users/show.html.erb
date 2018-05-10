@@ -2,20 +2,26 @@
   <div class="col-sm-6 mx-auto pt-5">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title pb-3 text-center"><%=@user.name%></h5>
-        <p class="text-center"><%=@user.about%></p>
+        <h5 class="card-title pb-3"><%=@user.name%></h5>
+        <p class=""><b> A Bit About Me:</b><br>
+          <%=@user.about%></p>
+        <p><b>Home Town:</b> <%=@user.city%>, <%=@user.state%></p>
       </div>
     </div>
   </div>
   <div class="col-sm-6 mx-auto pt-5">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title pb-3 text-center"><%=@user.name%> Upcoming Events</h5>
-          <ul class="list-group">
-            <%@attending.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
-            <%end%>
-        </ul>
+        <h5 class="card-title pb-3"><%=@user.name%> Upcoming Events</h5>
+          <%if @user_events.empty?%>
+            <p>You have no events to show.</p>
+          <%else%>
+            <ul class="list-group">
+              <%@user_events.each do |event| %>
+                <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
+              <%end%>
+            </ul>
+          <%end%>
         <%if @user == current_user%>
           <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_event_path %>
         <%end%>
@@ -29,7 +35,7 @@
   <div class="col-sm-6 mx-auto pt-2">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title pb-3 text-center">RSVP'd Events</h5>
+        <h5 class="card-title pb-3">RSVP'd Events</h5>
         <ul class="list-group">
           <%@attending.each do |event| %>
             <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
@@ -41,7 +47,7 @@
     <div class="col-sm-6 mx-auto pt-2">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title pb-3 text-center">Events Near You</h5>
+          <h5 class="card-title pb-3">Events Near You</h5>
           <ul class="list-group">
             <%@events_near_by.each do |event| %>
               <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
