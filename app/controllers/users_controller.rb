@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @attending = attending(@user).sort_by {|event| event.date}
-    @user_events = Event.all.find_all {|event| event.user_id = params[:id]}
-    binding.pry
+    @user_events = user_events.sort_by {|event| event.date}
+    @events_near_by = events_near_by.sort_by {|event| event.date}
   end
 
   def destroy
@@ -52,5 +52,14 @@ class UsersController < ApplicationController
 
   def attending(user)
     Event.all.find_all {|e| e.users.include? user}
+  end
+
+  def user_events
+    Event.all.find_all {|event| event.user_id == params[:id]}
+  end
+
+  def events_near_by
+
+    Event.all.find_all {|event| event.location.city == current_user.city && event.location.state == current_user.state}
   end
 end

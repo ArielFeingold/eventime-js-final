@@ -16,6 +16,9 @@
               <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
             <%end%>
         </ul>
+        <%if @user == current_user%>
+          <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_event_path %>
+        <%end%>
       </div>
     </div>
   </div>
@@ -23,25 +26,25 @@
 
 <div class="row">
 <%if @user == current_user %>
-  <div class="col-sm-6 mx-auto pt-5">
+  <div class="col-sm-6 mx-auto pt-2">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title pb-3 text-center">Your Upcoming Events</h5>
+        <h5 class="card-title pb-3 text-center">RSVP'd Events</h5>
         <ul class="list-group">
           <%@attending.each do |event| %>
-            <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
+            <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
           <%end%>
         </ul>
       </div>
     </div>
   </div>
-    <div class="col-sm-6 mx-auto pt-5">
+    <div class="col-sm-6 mx-auto pt-2">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title pb-3 text-center">Your Upcoming Events</h5>
+          <h5 class="card-title pb-3 text-center">Events Near You</h5>
           <ul class="list-group">
-            <%@attending.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
+            <%@events_near_by.each do |event| %>
+              <li class="list-group-item"><%=link_to event.title, event_path(event)%>, <%=event.date%></li>
             <%end%>
           </ul>
         </div>
