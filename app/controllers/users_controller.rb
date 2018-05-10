@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    binding.pry
     if @user.update(user_params)
 	     redirect_to user_path(@user)
     else
@@ -30,7 +29,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id]) || current_user
-    @attending = attending(@user)
+    @attending = attending(@user).sort_by {|event| event.date}
+    binding.pry
   end
 
   def destroy
@@ -43,7 +43,9 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation,
       :name,
-      :about
+      :about,
+      :city,
+      :state
       )
     end
 
