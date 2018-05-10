@@ -6,7 +6,24 @@
         <p class="text-center"><%=@user.about%></p>
       </div>
     </div>
-  <%if @user = current_user %>
+  </div>
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3 text-center"><%=@user.name%> Upcoming Events</h5>
+          <ul class="list-group">
+            <%@attending.each do |event| %>
+              <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
+            <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<%if @user == current_user %>
+  <div class="col-sm-6 mx-auto pt-5">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3 text-center">Your Upcoming Events</h5>
@@ -17,5 +34,18 @@
         </ul>
       </div>
     </div>
-    <%end%>
   </div>
+    <div class="col-sm-6 mx-auto pt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title pb-3 text-center">Your Upcoming Events</h5>
+          <ul class="list-group">
+            <%@attending.each do |event| %>
+              <li class="list-group-item"><%=link_to event.title, event_path(event)%></li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

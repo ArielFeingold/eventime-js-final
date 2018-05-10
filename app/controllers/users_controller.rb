@@ -28,8 +28,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id]) || current_user
+    @user = User.find_by(id: params[:id])
     @attending = attending(@user).sort_by {|event| event.date}
+    @user_events = Event.all.find_all {|event| event.user_id = params[:id]}
+    binding.pry
   end
 
   def destroy
