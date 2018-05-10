@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :events
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :rsvps, only: [:create, :destroy]
-  resources :sessions, only: [:new, :create, :destroy]
 
   root 'static_pages#home'
 
