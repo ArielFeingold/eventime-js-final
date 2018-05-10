@@ -7,6 +7,22 @@
 
         <p class="text-center">or</p>
         <h5 class="card-title pb-3 text-center">Sign-up To EventHub</h5>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <table class="table table-borderless table-sm">
+              <thead>
+                <tr>
+                  <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this account from being opened:</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <tr><% @user.errors.full_messages.each do |msg| %>
+                        <td scope="row" class="table-warning"> &nbsp &nbsp <%= msg %></td>
+                      <% end %>
+                  </tr>
+                </tbody>
+              </table>
+          <% end %>
         <%= render 'form' %>
       </div>
     </div>
