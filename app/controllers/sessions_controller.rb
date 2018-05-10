@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_user_is_authenticated, only: [:new,:create]
   def new
-   @user = User.new
  end
 
  def create
@@ -41,11 +40,12 @@ private
   end
 
   def sign_in_with_password
-    @user = User.find_by(email: params[:user][:email])
-    if @user
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+    user = User.find_by(email: params[:session][:email])
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      redirect_to user_path(user)
     else
+      flash[:danger] = 'Invalid email/password combination' 
       render 'new'
     end
   end
