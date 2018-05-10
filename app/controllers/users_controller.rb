@@ -60,6 +60,6 @@ class UsersController < ApplicationController
 
   def events_near_by
 
-    Event.all.find_all {|event| event.location.city == current_user.city && event.location.state == current_user.state}
+    Event.all.find_all {|event| event.location.city.downcase == current_user.city.downcase && event.location.state == current_user.state}
   end
 end
