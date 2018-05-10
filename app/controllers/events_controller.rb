@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
+      Rsvp.create(user_id: params[:event][:user_id], event_id: @event.id)
       redirect_to event_path(@event)
     else
       render 'new'
