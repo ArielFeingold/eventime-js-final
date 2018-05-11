@@ -16,7 +16,7 @@
           <%@events.each do |event|%>
             <tr>
              <th scope="row"></th>
-             <td><%=link_to event.title.titleize, event_path(event)%></td>
+             <td><%=link_to event.title.titleize, user_event_path(event.user, event)%></td>
              <td><%=event.location.city.titleize%>, <%=event.location.state.titleize%></td>
              <td><%=event.date%></td>
            </tr>
