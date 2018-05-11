@@ -1,29 +1,33 @@
-<div class="row">
-  <div class="col-sm-6 mx-auto pt-5">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title pb-3 text-center">Start The Party Today</h5>
-        <%= link_to('Log in with Facebook!', '/auth/facebook', class:"btn btn-primary btn-block mb-4")%>
+<%if current_user.present?%>
+  <p>You are already logged in</p>
+<%else%>
+  <div class="row">
+    <div class="col-sm-6 mx-auto pt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title pb-3 text-center">Start The Party Today</h5>
+          <%= link_to('Log in with Facebook!', '/auth/facebook', class:"btn btn-primary btn-block mb-4")%>
 
-        <p class="text-center">or</p>
-        <h5 class="card-title pb-3 text-center">Sign-up To EventHub</h5>
-        <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <table class="table table-borderless">
-              <thead>
-                <tr class="table-danger">
-                  <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this event from being created:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @user.errors.full_messages.each do |msg| %>
-                  <tr class="table-warning"><td>&nbsp &nbsp <%= msg %></td></tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        <% end %>
-        <%= render 'form' %>
+          <p class="text-center">or</p>
+          <h5 class="card-title pb-3 text-center">Sign-up To EventHub</h5>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <table class="table table-borderless">
+                <thead>
+                  <tr class="table-danger">
+                    <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this event from being created:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @user.errors.full_messages.each do |msg| %>
+                    <tr class="table-warning"><td>&nbsp &nbsp <%= msg %></td></tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+          <%= render 'form' %>
+        </div>
       </div>
     </div>
-  </div>
+  <%end%>
