@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
   resources :events
-  resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
+      resources :events
+    end
   resources :rsvps, only: [:create, :destroy]
 
   root 'static_pages#home'

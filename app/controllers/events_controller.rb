@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.save
       Rsvp.create(user_id: params[:event][:user_id], event_id: @event.id)
-      redirect_to event_path(@event)
+      redirect_to user_event_path(@event.user, @event)
     else
       render 'new'
     end
@@ -21,8 +21,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find_by(id: params[:id])
+    binding.pry
     if @event.update(event_params)
-      redirect_to event_path(@event)
+      redirect_to user_event_path(@event.user, @event)
     else
       render 'new'
     end
