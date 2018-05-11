@@ -1,15 +1,22 @@
 class CommentsController < ApplicationController
 
-  def new
-  end
-
   def create
     comment = Comment.create(comment_params)
     @event = Event.find_by(id: params[:comment][:event_id])
     redirect_to user_event_path(@event.user, @event)
   end
 
-  def destroy
+  def edit
+    @comment = Comment.find_by(id: params[:id])
+  end
+
+  def update
+    @comment = Comment.find_by(id: params[:id])
+    if @comment.update(comment_params)
+      redirect_to user_event_path(@comment.user, @comment.event)
+    else
+      render 'new'
+    end
   end
 
 private
