@@ -9,7 +9,7 @@
           <p>Date: <%=@event.date%></p>
           <p>Time: <%=@event.time%></p>
           <%if @event.user == current_user%>
-            <%= link_to "Edit Event", edit_user_event_path(@event), class:"btn btn-primary" %>
+            <%= link_to "Edit Event", edit_user_event_path(current_user, @event), class:"btn btn-primary" %>
           <%end%>
       </div>
     </div>
