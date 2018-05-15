@@ -17,5 +17,9 @@ class Event < ApplicationRecord
    end
   end
 
+  def self.most_recent(limit)
+    order("created_at desc").limit(limit)
+  end
+
 
 end

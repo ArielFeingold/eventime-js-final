@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   def index
     date_range  = Date.today..(Date.today+7)
     @events = Event.all.sort_by {|event| event.date}
+    @recent_events = Event.most_recent(5)
   end
 
   def show
