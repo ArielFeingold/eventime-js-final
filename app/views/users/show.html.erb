@@ -44,7 +44,7 @@
         <%else%>
           <ul class="list-group">
             <%@attending.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title.titleize, event_path(event)%>, <%=event.date%></li>
+              <li class="list-group-item"><%=link_to event.title.titleize, user_event_path(event.user, event)%>, <%=event.date%></li>
             <%end%>
           </ul>
         <%end%>
@@ -60,7 +60,7 @@
           <%else%>
             <ul class="list-group">
               <%@events_near_by.each do |event| %>
-                <li class="list-group-item"><%=link_to event.title.titleize, event_path(event)%>, <%=event.date%></li>
+                <li class="list-group-item"><%=link_to event.title.titleize, user_event_path(event.user, event)%>, <%=event.date%></li>
               <%end%>
             </ul>
           <%end%>
