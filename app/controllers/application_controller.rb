@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
   def verify_user_is_authenticated
+    flash[:notice] = "You need to be logged in to access the site."
     redirect_to '/' unless user_is_authenticated
   end
 

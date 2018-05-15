@@ -5,6 +5,9 @@
         <p class="lead">The social network for events.</p>
         <hr class="my-4">
         <p>Publish events your'e attending, find events that intrest you and meet up with friends.</p>
+        <% if flash[:notice] %>
+          <div class="alert alert-warning"><%= flash[:notice] %></div>
+        <% end %>
         <%if !current_user.present?%>
         <%= link_to '<button type="button" class="btn btn-primary mt-2">Join Now</button>'.html_safe, new_user_path %>
         <p class ="mt-2">Already have an account? <%=link_to "Login", login_path%></p>
