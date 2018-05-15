@@ -22,7 +22,6 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find_by(id: params[:id])
-    @event.location = find_or_create_location
     if @event.update(event_params)
       redirect_to user_event_path(@event.user, @event)
     else
