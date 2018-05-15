@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to user_event_path(@comment.user, @comment.event)
     else
-      render 'new'
+      render 'edit'
     end
   end
 

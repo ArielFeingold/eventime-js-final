@@ -13,14 +13,9 @@
           <% if @user.errors.any? %>
             <div id="error_explanation">
               <table class="table table-borderless">
-                <thead>
-                  <tr class="table-danger">
-                    <th scope="col"><%= pluralize(@user.errors.count, "error") %> prohibited this event from being created:</th>
-                  </tr>
-                </thead>
                 <tbody>
                   <% @user.errors.full_messages.each do |msg| %>
-                    <tr class="table-warning"><td>&nbsp &nbsp <%= msg %></td></tr>
+                    <tr class="table-danger"><td>&nbsp &nbsp <%= msg %></td></tr>
                   <% end %>
                 </tbody>
               </table>

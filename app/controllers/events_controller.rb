@@ -21,7 +21,6 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find_by(id: params[:id])
-    binding.pry
     if @event.update(event_params)
       redirect_to user_event_path(@event.user, @event)
     else
