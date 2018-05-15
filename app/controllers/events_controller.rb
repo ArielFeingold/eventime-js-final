@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find_by(id: params[:id])
+    @event.location = find_or_create_location
     if @event.update(event_params)
       redirect_to user_event_path(@event.user, @event)
     else
@@ -30,7 +31,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     Event.find(params[:id]).destroy
     redirect_to user_path(current_user)
   end
@@ -43,6 +43,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @comment = Comment.new
+
   end
 
 private

@@ -8,6 +8,11 @@
           <p>Description: <%=@event.description%></p>
           <p>Date: <%=@event.date.strftime("%A, %B %-d" )%></p>
           <p>Time: <%=@event.time.strftime("%-l:%M%P")%></p>
+          <p>Location:<br>
+            <%=@event.location.name%><br>
+            <%=@event.location.address%><br>
+            <%=@event.location.city%>, <%=@event.location.state%>
+            </p>
           <%if @event.user == current_user%>
             <%= link_to "Edit Event", edit_user_event_path(current_user, @event), class:"btn btn-primary" %>
           <%end%>
