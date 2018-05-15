@@ -16,4 +16,6 @@ class Event < ApplicationRecord
      errors.add(:past_date, "Event can't be in the past")
    end
   end
+
+
 end

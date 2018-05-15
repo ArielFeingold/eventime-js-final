@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.location = find_or_create_location
     if @event.save
       Rsvp.create(user_id: params[:event][:user_id], event_id: @event.id)
       redirect_to user_event_path(@event.user, @event)
@@ -61,5 +62,13 @@ private
       :state,
     ],
     rsvp_attributes: [:user_id])
+  end
+
+  def find_or_create_location
+    location = Location.find_or_create_by(
+      name: params[:event][:location_attributes][:name],
+      address: params[:event][:location_attributes][:address],
+      city: params[:event][:location_attributes][:city],
+      state: params[:event][:location_attributes][:state] )
   end
 end

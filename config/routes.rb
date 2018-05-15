@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'locations/index'
+  get 'locations/show'
   resources :comments, only: [:create, :edit, :update]
   resources :events
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
