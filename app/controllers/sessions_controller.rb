@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
  def destroy
    session.delete :user_id
-   redirect_to root_path
+   redirect_to login_path
  end
 
 private
@@ -45,7 +45,7 @@ private
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
-      flash[:danger] = 'Invalid email/password combination' 
+      flash[:danger] = 'Invalid email/password combination'
       render 'new'
     end
   end
