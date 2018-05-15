@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-6 mx-auto pt-5">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title pb-3"><%=@location.name%></h5>
+        <p>
+          <%=@location.name%><br>
+          <%=@location.address%><br>
+          <%=@location.city%>, <%=@location.state%>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title pb-3">Upcoming Events: </h5>
+          <ul class="list-group">
+            <%@upcoming_events.each do |event| %>
+              <li class="list-group-item"><%=link_to event.title,user_event_path(event.user, event)%></li>
+            <%end%>
+         </ul>
+      </div>
+    </div>
+  </div>
+</div>
