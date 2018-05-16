@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
   has_many :users, through: :events
   belongs_to :user
 

@@ -25,11 +25,16 @@ class LocationsController < ApplicationController
   end
 
   def edit
-
+    @location = Location.find(params[:id])
   end
 
   def update
-
+    @location = Location.find(params[:id])
+    if @location.update(location_params)
+      redirect_to user_location_path(@location.user, @location)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
