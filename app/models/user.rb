@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :rsvps
   has_many :events, through: :rsvps
   has_many :comments
+  has_many :locations
 
   validates :email, :password, presence: true, on: :create
   validates :name, presence: true
