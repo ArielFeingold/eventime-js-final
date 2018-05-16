@@ -6,7 +6,8 @@ class LocationsController < ApplicationController
   end
 
   def index
-
+    @public_locations_nearby = Location.public_locations.nearby(current_user.city, current_user.state)
+    @user_locations = Location.belong_to_user(current_user)
   end
 
   def new
