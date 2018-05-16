@@ -17,33 +17,20 @@
 @import "bootstrap";
 @import "bootstrap-social.less";
 
-body, html  {
-  height: 100%;
-  background-color: #333a40;
-}
 
 .bg {
-    /* The image used */
     background-image: url("/assets/background.jpg");
-    /* Full height */
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
+    background-color: #333a40;
+}
+
+div.field_with_errors textarea, select {
+  border: 1px solid red;
 }
 
 div.field_with_errors input {
-  border: 1px solid red;
-}
-
-
-div.field_with_errors textarea {
-  border: 1px solid red;
-}
-
-
-div.field_with_errors select {
   border: 1px solid red;
 }
