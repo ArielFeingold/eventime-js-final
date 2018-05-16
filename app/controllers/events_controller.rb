@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    binding.pry
     @event.location = find_or_create_location
     if @event.save
       Rsvp.create(user_id: params[:event][:user_id], event_id: @event.id)

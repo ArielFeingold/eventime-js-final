@@ -12,10 +12,16 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+
   end
 
   def create
-    binding.pry
+    @location = Location.new(location_params)
+    if @location.save
+      redirect_to user_location_path(@location.user, @location)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -35,6 +41,17 @@ class LocationsController < ApplicationController
 
   def upcoming_events(location)
     location.events.find_all {|event| event.date > Date.today}
+  end
+
+  def location_params
+  params.require(:location).permit(
+      :name,
+      :address,
+      :city,
+      :state,
+      :public,
+      :user_id
+      )
   end
 
 end
