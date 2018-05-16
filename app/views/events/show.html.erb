@@ -6,7 +6,7 @@
         <h5 class="card-title pb-3">Event: <%=@event.title%></h5>
           <p>Created By: <%=link_to @event.user.name, user_path(@event.user)%></p>
           <p>Description: <%=@event.description%></p>
-          <p>Date: <%=@event.date.strftime("%A, %B %-d" )%></p>
+          <p>Date: <%=@event.date.strftime("%A, %B %-d, %Y" )%></p>
           <p>Time: <%=@event.time.strftime("%-l:%M%P")%></p>
           <p>Location:</p>
           <p>
