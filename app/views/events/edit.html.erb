@@ -3,7 +3,18 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3 text-center">Edit <%=@event.title.titleize%></h5>
-          <%= render 'form' %>
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+            <table class="table table-borderless">
+              <tbody>
+                <% @event.errors.full_messages.each do |msg| %>
+                  <tr class="table-danger"><td>&nbsp &nbsp <%= msg %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+        <%= render 'form' %>
           <%= form_tag user_event_path(current_user, @event), method: "delete" do -%>
             <div><%= submit_tag 'Delete Event', class: 'btn btn-link mt-3' %></div>
           <% end -%>
