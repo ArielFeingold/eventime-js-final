@@ -38,7 +38,8 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-
+    Location.find(params[:id]).destroy
+    redirect_to user_path(current_user)
   end
 
 
