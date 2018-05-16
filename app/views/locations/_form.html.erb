@@ -1,0 +1,38 @@
+<%= form_for [:user, @location] do |f| %>
+
+<div class="form-group">
+<%= f.label :name%>
+<br>
+<%= f.text_field :name, class: "form-control", :placeholder => (@location.errors.full_messages_for(:name).first) || @location.name%><br>
+</div>
+
+<div class="form-group">
+  <%= f.label :address %>
+  <br>
+  <%= f.text_field :address, class: "form-control", :placeholder => (@location.errors.full_messages_for(:address).first) || @location.address%>
+</div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <br>
+    <%= f.text_field :city, class: "form-control", :placeholder => (@location.errors.full_messages_for(:city).first) || @location.city %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label :state %>
+  <br>
+  <%= f.select :state, us_states, :prompt => 'Select One' %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label "Is this location public?" %> &nbsp;&nbsp <%= f.check_box :public %>&nbsp Yes
+  </div>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <br/>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

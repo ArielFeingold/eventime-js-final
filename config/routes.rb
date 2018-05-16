@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
       resources :events
+      resources :locations
     end
   resources :rsvps, only: [:create, :destroy]
 
