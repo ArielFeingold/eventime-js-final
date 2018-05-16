@@ -8,6 +8,9 @@
           <%=@location.address%><br>
           <%=@location.city%>, <%=@location.state%>
         </p>
+        <%if @location.user == current_user%>
+          <%= link_to '<button type="button" class="btn btn-primary mt-2">Edit Location</button>'.html_safe, edit_user_location_path(@location.user, @location) %>
+        <%end%>
       </div>
     </div>
     <div class="card">
