@@ -8,6 +8,8 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :rsvps
 
+  scope :most_recent, -> (limit) { order("created_at desc").limit(limit) }
+
   validates :title, :description, :date, :time, presence: true
   validate :event_date_cannot_be_in_the_past
 
@@ -17,9 +19,9 @@ class Event < ApplicationRecord
    end
   end
 
-  def self.most_recent(limit)
-    order("created_at desc").limit(limit)
-  end
+  # def self.most_recent(limit)
+  #   order("created_at desc").limit(limit)
+  # end
 
 
 end
