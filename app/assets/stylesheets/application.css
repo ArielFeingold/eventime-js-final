@@ -18,15 +18,14 @@
 @import "bootstrap-social.less";
 
 body, html  {
-  height: 100%;
   background-color: #333a40;
+  background-repeat: repeat;
 }
 
 .bg {
-    /* The image used */
     background-image: url("/assets/background.jpg");
-    /* Full height */
-    height: 100%;
+    background-repeat: repeat;
+
 
     /* Center and scale the image nicely */
     background-position: center;
