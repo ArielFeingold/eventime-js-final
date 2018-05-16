@@ -14,10 +14,17 @@
       <div class="card-body">
         <h5 class="card-title pb-3">Upcoming Events: </h5>
           <ul class="list-group">
-            <%@upcoming_events.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title,user_event_path(event.user, event)%></li>
+            <%if @upcoming_events.empty?%>
+              <p>No events to show</p>
+            <%else%>
+              <%@upcoming_events.each do |event| %>
+                <li class="list-group-item"><%=link_to event.title,user_event_path(event.user, event)%></li>
             <%end%>
+          <%end%>
          </ul>
+         <%if @location.public == true%>
+           <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_user_event_path(current_user) %>
+         <%end%>
       </div>
     </div>
   </div>
