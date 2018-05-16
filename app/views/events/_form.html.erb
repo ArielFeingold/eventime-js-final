@@ -44,7 +44,13 @@
     <%= f.label :state %>
     <br>
     <%= f.select :state, us_states, :prompt => 'Select One' %>
+    <br>
 
+    <div class="mt-4">
+      <%= f.label "Is this location public?" %> &nbsp;&nbsp
+      <%= f.check_box :public %>&nbsp Yes
+    </div>
+    <br>
   <% end %>
 
   <div class="actions">

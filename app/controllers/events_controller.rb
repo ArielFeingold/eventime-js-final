@@ -8,6 +8,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.location = find_or_create_location
+    @event.location.public = params[:event][:location_attributes][:public]
+    @event.location.save
     if @event.save
       Rsvp.create(user_id: params[:event][:user_id], event_id: @event.id)
       redirect_to user_event_path(@event.user, @event)
@@ -23,6 +25,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find_by(id: params[:id])
     if @event.update(event_params)
+          binding.pry
       redirect_to user_event_path(@event.user, @event)
     else
       render 'edit'
@@ -61,6 +64,7 @@ private
       :address,
       :city,
       :state,
+      :public,
     ],
     rsvp_attributes: [:user_id])
   end
