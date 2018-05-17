@@ -17,13 +17,12 @@
 @import "bootstrap";
 @import "bootstrap-social.less";
 
-
 .bg {
     background-image: url("/assets/background.jpg");
     height: 100%;
     background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: auto;
     background-color: #333a40;
 }
 
