@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.build_location
+    @event.build_location(session[:location])
   end
 
   def create

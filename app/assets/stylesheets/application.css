@@ -26,10 +26,14 @@
     background-color: #333a40;
 }
 
-div.field_with_errors textarea, select {
+div.field_with_errors textarea {
   border: 1px solid red;
 }
 
 div.field_with_errors input {
+  border: 1px solid red;
+}
+
+div.field_with_errors select {
   border: 1px solid red;
 }
