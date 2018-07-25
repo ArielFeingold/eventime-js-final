@@ -1,0 +1,20 @@
+.bg {
+    background-image: url("/assets/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-color: #333a40;
+}
+
+div.field_with_errors textarea {
+  border: 1px solid red;
+}
+
+div.field_with_errors input {
+  border: 1px solid red;
+}
+
+div.field_with_errors select {
+  border: 1px solid red;
+}
