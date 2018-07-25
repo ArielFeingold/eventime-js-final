@@ -8,6 +8,7 @@ $(function () {
       userRsvps = $(data.rsvps).toArray();
 
       attachEvents(userEvents)
+      attachRsvps(userRsvps)
   })
 
   function attachEvents(array) {
@@ -21,4 +22,15 @@ $(function () {
     $("#user_events").append(text);
   }
 }
+
+function attachRsvps(array) {
+
+  $(array).each(function(index, e) {
+    $.get(`/events/${e.id}.json`).done(function(data){
+      debugger
+       let text = `<li class="list-group-item"><a href="/events/${e.event_id}" >${data.title}</a>, ${data.date}</li>`
+       $("#attending_events").append(text);
+     });
+   })
+  }
 })

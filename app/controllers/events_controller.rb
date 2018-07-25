@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     @comment = Comment.new
     respond_to do |format|
        format.html { render :show }
-       format.json { render json: @user }
+       format.json { render json: @event }
     end
 
   end
