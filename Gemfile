@@ -32,7 +32,7 @@ gem 'dotenv-rails'
 gem 'thin'
 gem 'bootstrap'
 gem 'jquery-rails'
-
+gem 'active_model_serializers'
 gem 'titleize'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
