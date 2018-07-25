@@ -12,19 +12,12 @@
       </div>
     </div>
   </div>
+<!--  upcoming events-->
   <div class="col-sm-6 mx-auto pt-5">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3"><%=@user.name.titleize%> Upcoming Events</h5>
-          <%if @user_events.empty?%>
-            <p>You have no events to show.</p>
-          <%else%>
-            <ul class="list-group">
-              <%@user_events.each do |event| %>
-                <li class="list-group-item"><%=link_to event.title.titleize, user_event_path(event.user, event)%></li>
-              <%end%>
-            </ul>
-          <%end%>
+          <ul class="list-group pb-3 pl-3" id="user_events" data-id="<%=@user.id%>"></ul>
         <%if @user == current_user%>
           <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_user_event_path(current_user) %>
         <%end%>
@@ -32,38 +25,23 @@
     </div>
   </div>
 </div>
-
+<!--  attending events-->
 <div class="row">
 <%if @user == current_user %>
   <div class="col-sm-6 mx-auto pt-2">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">RSVP'd Events</h5>
-        <%if @attending.empty?%>
-          <p>You have no RSVP'd events. Click <%=link_to "HERE", events_path%> to see all upcoming events</p>
-        <%else%>
-          <ul class="list-group">
-            <%@attending.each do |event| %>
-              <li class="list-group-item"><%=link_to event.title.titleize, user_event_path(event.user, event)%>&nbsp <%=event.date.strftime("%B %-d, %Y" )%></li>
-            <%end%>
-          </ul>
-        <%end%>
+          <ul class="list-group pb-3 pl-3" id="attending_events" data-id="<%=@user.id%>"></ul>
       </div>
     </div>
   </div>
+  <!--  nearby events-->
     <div class="col-sm-6 mx-auto pt-2">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title pb-3">Events Near You</h5>
-          <%if @events_near_by.empty?%>
-            <p>No Events near by. Click <%=link_to "HERE", events_path%> to see all the events.</p>
-          <%else%>
-            <ul class="list-group">
-              <%@events_near_by.each do |event| %>
-                <li class="list-group-item"><%=link_to event.title.titleize, user_event_path(event.user, event)%>, <%=event.date%></li>
-              <%end%>
-            </ul>
-          <%end%>
+            <ul class="list-group pb-3 pl-3" id="nearby_events" data-id="<%=@user.id%>"></ul>
         </div>
       </div>
     </div>
