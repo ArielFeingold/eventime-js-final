@@ -29,9 +29,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @attending = attending(@user).sort_by {|event| event.date}
-    @user_events = user_events.sort_by {|event| event.date}
-    @events_near_by = events_near_by.sort_by {|event| event.date}
+    respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @user }
+    end
   end
 
   def destroy
