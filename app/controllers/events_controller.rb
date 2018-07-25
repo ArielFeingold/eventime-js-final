@@ -38,6 +38,10 @@ class EventsController < ApplicationController
     date_range  = Date.today..(Date.today+7)
     @events = Event.all.sort_by {|event| event.date}
     @recent_events = Event.most_recent(5)
+    respond_to do |format|
+       format.html { render :index }
+       format.json { render json: @events }
+    end
   end
 
   def show

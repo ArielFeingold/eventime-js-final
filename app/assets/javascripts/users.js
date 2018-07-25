@@ -1,4 +1,3 @@
-
 $(function () {
   const userId = $('#user_events').data('id');
 
@@ -7,8 +6,9 @@ $(function () {
       userEvents = $(data.events).toArray();
       userRsvps = $(data.rsvps).toArray();
 
-      attachEvents(userEvents)
-      attachRsvps(userRsvps)
+      attachEvents(userEvents);
+      attachRsvps(userRsvps);
+      attachNearby(userId);
   })
 
   function attachEvents(array) {
@@ -24,7 +24,6 @@ $(function () {
 }
 
 function attachRsvps(array) {
-
   $(array).each(function(index, e) {
     $.get(`/events/${e.id}.json`).done(function(data){
        let text = `<li class="list-group-item"><a href="/events/${e.event_id}" >${data.title}</a>, ${data.date}</li>`
@@ -32,4 +31,18 @@ function attachRsvps(array) {
      });
    })
   }
+
+  function attachNearby(id) {
+    $.get(`/events.json`).done(function(data) {
+      nearbyEvents = $(data).filter(function(index, e) {
+        e.location.city == user.city;
+      }).prevObject.toArray()
+      $(nearbyEvents).each(function(index, e) {
+      	let text = `<li class="list-group-item"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
+        $("#nearby_events").append(text);
+      })
+    })
+
+  }
+
 })
