@@ -51,13 +51,6 @@ class UsersController < ApplicationController
       )
     end
 
-  def attending(user)
-    Event.all.find_all {|e| e.users.include? user}
-  end
-
-  def user_events
-    Event.all.find_all {|event| event.user_id == params[:id].to_i}
-  end
 
   def events_near_by
     Event.all.find_all {|event| event.location.city.downcase == current_user.city.downcase && event.location.state == current_user.state}

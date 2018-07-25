@@ -43,6 +43,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @comment = Comment.new
+    respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @user }
+    end
 
   end
 
