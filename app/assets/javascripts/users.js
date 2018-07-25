@@ -14,7 +14,7 @@ $(function () {
   function attachEvents(array) {
   if(array.length) {
     $(array).each(function(index, e) {
-      text = `<li class="list-group-item"><a href="/users/${userId}/events/${index}">${e.title}</a>, ${e.date}</li>`
+      text = `<li class="list-group-item"><a href="/users/${userId}/events/${e.id}">${e.title}</a>, ${e.date}</li>`
       $("#user_events").append(text);
     })
   } else {
@@ -27,7 +27,6 @@ function attachRsvps(array) {
 
   $(array).each(function(index, e) {
     $.get(`/events/${e.id}.json`).done(function(data){
-      debugger
        let text = `<li class="list-group-item"><a href="/events/${e.event_id}" >${data.title}</a>, ${data.date}</li>`
        $("#attending_events").append(text);
      });
