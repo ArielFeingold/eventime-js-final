@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   resources :rsvps, only: [:create, :destroy, :index]
 
+  resources :locations, only: :show
+
   root 'static_pages#home'
 
   get '/auth/facebook/callback' => 'sessions#create'

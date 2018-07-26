@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def show
-    @location = Location.find(params[:id])
+    @location = Location.find_by(id: params[:id])
     session[:location] = @location
     @upcoming_events = upcoming_events(@location)
     respond_to do |format|
@@ -30,11 +30,11 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @location = Location.find(params[:id])
+    @location = Location.find_by(id: params[:id])
   end
 
   def update
-    @location = Location.find(params[:id])
+    @location = Location.find_by(id: params[:id])
     if @location.update(location_params)
       redirect_to user_location_path(@location.user, @location)
     else
@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    Location.find(params[:id]).destroy
+    Location.find_by(id: params[:id]).destroy
     redirect_to user_path(current_user)
   end
 
