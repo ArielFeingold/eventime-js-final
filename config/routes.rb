@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :events
       resources :locations
     end
-  resources :rsvps, only: [:create, :destroy]
+  resources :rsvps, only: [:create, :destroy, :index]
 
   root 'static_pages#home'
 

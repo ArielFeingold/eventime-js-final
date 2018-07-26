@@ -16,4 +16,11 @@ class RsvpsController < ApplicationController
     redirect_to user_event_path(@event.user, @event)
   end
 
+  def index
+    @rsvps = Rsvp.all
+    respond_to do |format|
+       format.json { render json: @rsvps }
+    end
+  end
+
 end
