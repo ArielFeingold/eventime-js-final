@@ -16,7 +16,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">Upcoming Events: </h5>
-          <div id="upcoimng_events" data-location="<%=@location.id%>></div>
+          <div id="upcoimng_events" data-id="<%=@location.id%>" data-user="<%=@location.user_id%>"></div>
          <%if @location.public == true%>
            <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_user_event_path(current_user) %>
          <%end%>
