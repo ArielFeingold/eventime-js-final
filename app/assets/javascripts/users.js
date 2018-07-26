@@ -63,9 +63,17 @@ $(document).ready(function () {
 // location#show page
 
   function locationPage() {
-    $.get(`/users${locationUserId}/location/${locationId}.json`, function(data) {
-      debugger
-      location = $(data).toArray()[0];
+    $.get(`/locations/${locationId}.json`, function(data) {
+
+    sortedEvents =  $(data.events).sort(function(a,b){
+      a = new Date(a.date);
+      b = new Date(b.date)
+      return a.getTime() - b.getTime()
+    })
+      sortedEvents.each(function(index, e){
+        text = `<li class="list-group-item"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
+        $("#upcoimng_events").append(text);
+      })
     })
   }
 
