@@ -45,7 +45,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find_by(id = params[:id])
     @comment = Comment.new
     respond_to do |format|
        format.html { render :show }
