@@ -4,6 +4,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     session[:location] = @location
     @upcoming_events = upcoming_events(@location)
+    respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @location }
+    end
   end
 
   def index
