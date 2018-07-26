@@ -13,13 +13,13 @@
         <%end%>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body" id="event_details"></div>
+    <div id="event_details_div">
+      <!--  for event details -->
     </div>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">Upcoming Events: </h5>
-          <ul class="list-group pb-3 pl-3" id="upcoimng_events" data-id="<%=@location.id%>" data-user="<%=@location.user_id%>"></ul>
+          <ul class="list-group pb-3 pl-3 list-holder" id="upcoimng_events" data-id="<%=@location.id%>" data-user="<%=@location.user_id%>"></ul>
          <%if @location.public == true%>
            <%= link_to '<button type="button" class="btn btn-primary mt-2">Create New Event</button>'.html_safe, new_user_event_path(current_user) %>
          <%end%>

@@ -71,8 +71,28 @@ $(document).ready(function () {
       return a.getTime() - b.getTime()
     })
       sortedEvents.each(function(index, e){
-        text = `<li class="list-group-item"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
+        text = `<li class="e-details list-group-item" data-id="${e.id}"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
         $("#upcoimng_events").append(text);
+      })
+    }).done(function(){
+      $(".e-details.list-group-item").on("click", function(e){
+        e.preventDefault();
+        eventId = $(this).data("id");
+        $.get(`/events/${eventId}.json`, function(data){
+          text =
+              `<div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title pb-3">${data.title}</h5>
+                <br>
+                  <p>${data.description}</p>
+                  <br>
+                  <p>${data.date}</p>
+                  <a href="/events/${data.id}" class="badge badge-light">Click here to go to event page</a>
+                </div>
+              </div>`
+        $("#event_details_div").html(text)
+        })
+
       })
     })
   }
