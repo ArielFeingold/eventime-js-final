@@ -71,7 +71,7 @@ $(document).ready(function () {
       return a.getTime() - b.getTime()
     })
       sortedEvents.each(function(index, e){
-        text = `<li class="e-details list-group-item" data-id="${e.id}"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
+        text = `<li class="e-details list-group-item" data-id="${e.id}">${e.title}, ${e.date}</li>`;
         $("#upcoimng_events").append(text);
       })
     }).done(function(){
