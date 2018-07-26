@@ -1,14 +1,15 @@
 $(function () {
   const userId = $('#user_events').data('id');
+  let user;
 
     $.get(`/users/${userId}.json`, function(data) {
-      user = data
-      userEvents = $(data.events).toArray();
-      userRsvps = $(data.rsvps).toArray();
-
+      user = $(data).toArray()[0];
+      userEvents = user.events;
+      userRsvps = user.rsvps;
+  debugger
       attachEvents(userEvents);
       attachRsvps(userRsvps);
-      attachNearby(userId);
+      attachNearby();
   })
 
   function attachEvents(array) {
@@ -32,7 +33,7 @@ function attachRsvps(array) {
    })
   }
 
-  function attachNearby(id) {
+  function attachNearby() {
     $.get(`/events.json`).done(function(data) {
       nearbyEvents = $(data).filter(function(index, e) {
         e.location.city == user.city;
