@@ -105,8 +105,8 @@ $(document).ready(function () {
      var posting = $.post('/comments', values);
 
      posting.done(function(data) {
-       debugger
-       console.log(data);
+      text = `<li class="list-group-item"> <a href="/users/${data.user.id}">${data.user.name}</a>: ${data.content}<a href="/comments/${data.id}/edit"> edit</a></li>`
+      $('#comment-list').append(text)
      });
    });
 
