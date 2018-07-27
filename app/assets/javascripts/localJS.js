@@ -3,7 +3,6 @@ $(document).ready(function () {
 
   const userId = $('#user_events').data('id');
   const locationId = $('#upcoimng_events').data('id');
-  const locationUserId = $('#upcoimng_events').data('user');
 
   if(userId !== undefined) {
     userPage();
