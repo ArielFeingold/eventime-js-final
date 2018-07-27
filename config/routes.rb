@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :comments, only: [:create, :edit, :update]
+  resources :comments, only: [:create, :edit, :update, :new]
   resources :events do
     resources :locations, only: :show
   end

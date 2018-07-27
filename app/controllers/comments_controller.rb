@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
 
+  def new
+    @comment = Comment.new
+    render json: @post, status: 201
+  end
+
   def create
     comment = Comment.create(comment_params)
-    @event = Event.find_by(id: params[:comment][:event_id])
-    redirect_to user_event_path(@event.user, @event)
+    render json: comment, status: 201
   end
 
   def edit

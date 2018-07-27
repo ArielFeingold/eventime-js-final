@@ -96,6 +96,20 @@ $(document).ready(function () {
       })
     })
   }
+// event#show page- add comment form
+  $('#new_comment').submit(function(event) {
+     event.preventDefault();
+
+     var values = $(this).serialize();
+
+     var posting = $.post('/comments', values);
+
+     posting.done(function(data) {
+       debugger
+       console.log(data);
+     });
+   });
+
 
 
 })
