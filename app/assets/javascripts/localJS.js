@@ -82,6 +82,10 @@ $(document).ready(() => {
         $("#upcoimng_events").append(text);
       })
     }).done(() => {
+      showEventSummery();
+    });
+
+    function showEventSummery() {
       $(".e-details.list-group-item").on("click", function(e) {
         e.preventDefault();
         eventId = $(this).data("id");
@@ -100,7 +104,7 @@ $(document).ready(() => {
             $("#event_details_div").html(text)
         })
       })
-    })
+    }
   }
 // event#show page- add comment form
   $('#new_comment').submit(function(event) {
