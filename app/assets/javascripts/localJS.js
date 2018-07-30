@@ -7,7 +7,7 @@ function Comment(id, name, content) {
   this.postComment = `<li class="list-group-item"> <a href="/users/${id}">${name}</a>: ${content}<a href="/comments/${id}/edit"> edit</a></li>`
 }
 
-$(document).ready(function () {
+$(document).ready(() => {
 
   const userId = $('#user_events').data('id');
   const locationId = $('#upcoimng_events').data('id');
@@ -22,7 +22,7 @@ $(document).ready(function () {
   // user#show page
   function userPage(){
 
-    $.get(`/users/${userId}.json`, function(data) {
+    $.get(`/users/${userId}.json`, (data) => {
       user = $(data).toArray()[0];
       userEvents = user.events;
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     function attachEvents(array) {
     if(array.length) {
-      $(array).each(function(index, e) {
+      $(array).each((index, e) => {
         text = `<li class="list-group-item"><a href="/users/${userId}/events/${e.id}">${e.title}</a>, ${e.date}</li>`
         $("#user_events").append(text);
       })
@@ -44,8 +44,8 @@ $(document).ready(function () {
   }
 
     function attachRsvps() {
-      $.get(`/rsvps.json`).done(function(data) {
-        $(data).each(function(index, e) {
+      $.get(`/rsvps.json`).done((data) => {
+        $(data).each((index, e) => {
           if(e.user_id === user.id){
             text = `<li class="list-group-item"><a href="/events/${e.event.id}" >${e.event.title}</a>, ${e.event.date}</li>`;
             $("#attending_events").append(text);
@@ -55,11 +55,11 @@ $(document).ready(function () {
     }
 
     function attachNearby() {
-      $.get(`/events.json`).done(function(data) {
-        nearbyEvents = $(data).filter(function(index, e) {
+      $.get(`/events.json`).done((data) => {
+        nearbyEvents = $(data).filter((index, e) => {
           e.location.city == user.city;
         }).prevObject.toArray()
-        $(nearbyEvents).each(function(index, e) {
+        $(nearbyEvents).each((index, e) => {
           text = `<li class="list-group-item"><a href="/events/${e.id}" >${e.title}</a>, ${e.date}</li>`;
           $("#nearby_events").append(text);
         })
@@ -70,22 +70,22 @@ $(document).ready(function () {
 // location#show page
 
   function locationPage() {
-    $.get(`/locations/${locationId}.json`, function(data) {
+    $.get(`/locations/${locationId}.json`, (data) => {
 
-    sortedEvents =  $(data.events).sort(function(a,b){
+    sortedEvents =  $(data.events).sort((a,b) => {
       a = new Date(a.date);
       b = new Date(b.date)
       return a.getTime() - b.getTime()
     })
-      sortedEvents.each(function(index, e){
+      sortedEvents.each((index, e) => {
         text = `<li class="e-details list-group-item" data-id="${e.id}">${e.title}, ${e.date}</li>`;
         $("#upcoimng_events").append(text);
       })
-    }).done(function(){
-      $(".e-details.list-group-item").on("click", function(e){
+    }).done(() => {
+      $(".e-details.list-group-item").on("click", function(e) {
         e.preventDefault();
         eventId = $(this).data("id");
-        $.get(`/events/${eventId}.json`, function(data){
+        $.get(`/events/${eventId}.json`, (data) => {
           text =
               `<div class="card mb-3">
                 <div class="card-body">
@@ -97,9 +97,8 @@ $(document).ready(function () {
                   <a href="/events/${data.id}" class="badge badge-light">Click here to go to event page</a>
                 </div>
               </div>`
-        $("#event_details_div").html(text)
+            $("#event_details_div").html(text)
         })
-
       })
     })
   }
@@ -107,9 +106,9 @@ $(document).ready(function () {
   $('#new_comment').submit(function(event) {
      event.preventDefault();
 
-     var values = $(this).serialize();
+     const values = $(this).serialize();
 
-     var posting = $.post('/comments', values);
+     const posting = $.post('/comments', values);
 
      posting.done(function(data) {
       comment = new Comment(data.user.id, data.user.name, data.content);
