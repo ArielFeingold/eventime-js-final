@@ -1,4 +1,12 @@
 let user;
+
+function Comment(id, name, content) {
+  this.id = id;
+  this.name = name;
+  this.content = content;
+  this.postComment = `<li class="list-group-item"> <a href="/users/${id}">${name}</a>: ${content}<a href="/comments/${id}/edit"> edit</a></li>`
+}
+
 $(document).ready(function () {
 
   const userId = $('#user_events').data('id');
@@ -104,7 +112,8 @@ $(document).ready(function () {
      var posting = $.post('/comments', values);
 
      posting.done(function(data) {
-      text = `<li class="list-group-item"> <a href="/users/${data.user.id}">${data.user.name}</a>: ${data.content}<a href="/comments/${data.id}/edit"> edit</a></li>`
+      comment = new Comment(data.user.id, data.user.name, data.content);
+      text = comment.postComment;
       $('#comment-list').append(text)
       $('#new_comment')[0].reset();
      });
