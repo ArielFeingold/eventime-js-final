@@ -40,15 +40,11 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title pb-3">Comments </h5>
-          <%if @event.comments.empty?%>
-            <p>There are no comments for this event</p>
-          <%else%>
-            <ul class="list-group" id="comment-list">
-              <%@event.comments.each do |c| %>
-                <li class="list-group-item"> <%=link_to c.user.name.titleize, user_path(c.user)%>: <%=c.content.capitalize%> <%=link_to "edit", edit_comment_path(c) if c.user == current_user%></li>
-              <%end%>
-            </ul>
-          <%end%>
+          <ul class="list-group" id="comment-list">
+            <%@event.comments.each do |c| %>
+              <li class="list-group-item"> <%=link_to c.user.name.titleize, user_path(c.user)%>: <%=c.content.capitalize%> <%=link_to "edit", edit_comment_path(c) if c.user == current_user%></li>
+            <%end%>
+          </ul>
           <%if @event.rsvps.detect {|r| r.user == current_user}%>
             <p class="mt-4">Leave a Comment:</p>
             <%= render 'comments/comment_form' %>
