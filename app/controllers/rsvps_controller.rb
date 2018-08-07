@@ -17,10 +17,10 @@ class RsvpsController < ApplicationController
   end
 
   def index
-    @rsvps = Rsvp.all
-    respond_to do |format|
-       format.json { render json: @rsvps }
-    end
+    render json: Rsvp.all
+    # respond_to do |format|
+    #    format.json { render json: @rsvps }
+    # end
   end
 
 end

@@ -1,12 +1,5 @@
 let user;
 
-function Comment(id, name, content) {
-  this.id = id;
-  this.name = name;
-  this.content = content;
-  this.postComment = `<li class="list-group-item"> <a href="/users/${id}">${name}</a>: ${content}<a href="/comments/${id}/edit"> edit</a></li>`
-}
-
 $(document).ready(() => {
 
   const userId = $('#user_events').data('id');
@@ -106,22 +99,57 @@ $(document).ready(() => {
       })
     }
   }
+
+// events#index page - sort Events
+
+  $('#list-sort').on("click", function() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = $('#upcoming-table');
+    switching = true;
+
+    while (switching) {
+      switching = false;
+      rows = table[0].rows;
+
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+
+        if (x.textContent.toLowerCase() > y.textContent.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  })
 // event#show page- add comment form
+
+  function Comment(id, name, content) {
+    this.id = id;
+    this.name = name;
+    this.content = content;
+  }
+
   $('#new_comment').submit(function(event) {
-     event.preventDefault();
+   event.preventDefault();
 
-     const values = $(this).serialize();
+   const values = $(this).serialize();
 
-     const posting = $.post('/comments', values);
-
-     posting.done(function(data) {
-      comment = new Comment(data.user.id, data.user.name, data.content);
-      text = comment.postComment;
-      $('#comment-list').append(text)
-      $('#new_comment')[0].reset();
-     });
+   $.post('/comments', values).done(function(data) {
+    comment = new Comment(data.user.id, data.user.name, data.content);
+    text = comment.renderComment();
    });
+ });
 
+  Comment.prototype.renderComment = function() {
+   text = `<li class="list-group-item"> <a href="/users/${this.id}">${this.name}</a>: ${this.content}<a href="/comments/${this.id}/edit"> edit</a></li>`;
+   $('#comment-list').append(text)
+   $('#new_comment')[0].reset();
+  };
 
-
-})
+});
