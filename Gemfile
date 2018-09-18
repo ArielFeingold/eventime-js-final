@@ -36,6 +36,7 @@ gem 'jquery-rails'
 gem 'active_model_serializers'
 gem 'titleize'
 gem 'optimist'
+gem 'webpacker', '~> 3.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

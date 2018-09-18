@@ -1,4 +1,3 @@
-require 'pry'
 class SessionsController < ApplicationController
   skip_before_action :verify_user_is_authenticated, only: [:new,:create]
   def new
@@ -26,7 +25,6 @@ private
 
   def sign_in_with_auth(auth)
     if User.find_by(uid: auth['uid']).present?
-      binding.pry
       @user = User.find_by(uid: auth['uid'])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
