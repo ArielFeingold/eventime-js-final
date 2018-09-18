@@ -1,5 +1,7 @@
 {
   "name": "eventime",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "webpack": "^4.19.1"
+  }
 }
